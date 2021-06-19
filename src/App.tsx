@@ -18,62 +18,58 @@ const App = () => {
       // 「百年はもう来ていたんだな」とこの時始めて気がついた。"
     },
     {
-      title: "第2夜",
+      title: "第二夜",
       body: "2",
     },
     {
-      title: "第3夜",
+      title: "第三夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第四夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第五夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第六夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第七夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第八夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第九夜",
       body: "1",
     },
     {
-      title: "第3夜",
+      title: "第十夜",
       body: "1",
     },
     {
-      title: "第3夜",
-      body: "1",
-    },
-    {
-      title: "第3夜",
-      body: "1",
-    },
-    {
-      title: "第3夜",
-      body: "1",
+      title: "第十一夜",
+      body: "",
     },
   ];
   const [articles, setArticle] = useState<Article[]>(contents);
-  console.log("contents0:", contents[0]);
-  const [selectedArticle, setSelectedArticle] = useState<Article>(contents[0]);
+
+  const [selectedArticle, setSelectedArticle] = useState<Article>({
+    title: "",
+    body: "",
+  });
+
   return (
     <ArticleContext.Provider value={articles}>
       <div className="bg-gradient-to-r from-blue-200 to-blue-500 opacity-80text-xl">
-        <h1 className="text-4xl font-serif text-center pt-12 pb-6">
-          夢 10 + 1 夜
+        <h1 className="text-4xl font-serif text-center pt-12 pb-6  w-6 h-6 motion-safe:animate-bounce">
+          夢十夜 <span className="text-white text-5xl">+ 1</span>
         </h1>
         <div className=" flex flex-row ">
           <div className="min-h-screen w-4/12">

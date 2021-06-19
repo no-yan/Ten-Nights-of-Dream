@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { RadioGroup } from "@headlessui/react";
 
 type Content = {
@@ -13,11 +13,11 @@ type Props = {
 
 export default function Example({ contents, handleSelect, selected }: Props) {
   return (
-    <div className="w-full px-4 py-10">
+    <div className="w-full px-4 py-2">
       <div className="w-full max-w-md mx-auto">
         <RadioGroup value={selected} onChange={handleSelect}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {contents.map((content) => (
               <RadioGroup.Option
                 key={content.title}
@@ -40,7 +40,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                   <>
                     <div className="flex items-center justify-between w-full">
                       <div className="flex items-center">
-                        <div className="text-base">
+                        <div className="text-base overflow-hidden max-h-12 ">
                           <RadioGroup.Label
                             as="p"
                             className={`font-bold  ${
@@ -55,7 +55,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                               checked ? "text-light-blue-100" : "text-gray-800"
                             }`}
                           >
-                            <span> {content.body.slice(0, 50)}</span>
+                            <span> {content.body.slice(0, 200)}</span>
                           </RadioGroup.Description>
                         </div>
                       </div>

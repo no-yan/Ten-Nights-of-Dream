@@ -70,7 +70,7 @@ const MyEditor: VFC<Props> = ({ content }) => {
           editorState={editorState}
           onChange={setEditorState}
           handleKeyCommand={handleKeyCommand}
-          placeholder={"we can type on it"}
+          placeholder={"　こんな夢を見た。"}
         />
       </div>
     </>
