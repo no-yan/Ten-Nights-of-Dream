@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 import { RadioGroup } from "@headlessui/react";
+import { ContentState } from "draft-js";
 
 type Content = {
   title: string;
-  body: string;
+  body: ContentState;
 };
 type Props = {
   contents: Content[];
@@ -18,7 +19,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
         <RadioGroup value={selected} onChange={handleSelect}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
           <div className="space-y-1">
-            {contents.map((content) => (
+            {contents.map((content, index) => (
               <RadioGroup.Option
                 key={content.title}
                 value={content}
@@ -55,7 +56,10 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                               checked ? "text-light-blue-100" : "text-gray-800"
                             }`}
                           >
-                            <span> {content.body.slice(0, 200)}</span>
+                            <span>
+                              {" "}
+                              {content.body.getPlainText().slice(0, 200)}
+                            </span>
                           </RadioGroup.Description>
                         </div>
                       </div>

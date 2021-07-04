@@ -1,23 +1,27 @@
-import React, { useEffect, VFC } from "react";
+import { Dispatch, useEffect, VFC, useState } from "react";
 import {
   DraftHandleValue,
   Editor,
   EditorState,
   ContentState,
   RichUtils,
-  convertFromRaw,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
-import { Article } from "./ArticleContext";
+import { RichContent } from "./App";
 
 type Props = {
-  content: Article;
+  title: string;
+  content: ContentState;
+  setArticles: Dispatch<React.SetStateAction<RichContent[]>>;
 };
 
-const MyEditor: VFC<Props> = ({ content }) => {
-  const [editorState, setEditorState] = React.useState(() =>
-    EditorState.createWithContent(ContentState.createFromText(content.body))
+const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createWithContent(content)
   );
+  useEffect(() => {
+    setEditorState(EditorState.createWithContent(content));
+  }, [content]);
   const onChange = (editorState: any) => {
     setEditorState(editorState);
   };
@@ -32,15 +36,9 @@ const MyEditor: VFC<Props> = ({ content }) => {
 
     return "not-handled";
   };
-  useEffect(() => {
-    setEditorState(
-      EditorState.createWithContent(ContentState.createFromText(content.body))
-    );
-  }, [content]);
 
   return (
     <>
-      <h1>{content.title}</h1>
       <button
         onMouseDown={(e) => {
           onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));

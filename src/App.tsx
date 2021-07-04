@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import MyRadioGroup from "./ArticleTab";
 import MyEditor from "./MyEditor";
-import ArticleContext, { Article } from "./ArticleContext";
+import { Article } from "./ArticleContext";
+import { ContentState } from "draft-js";
+
+export type RichContent = { title: string; body: ContentState };
 
 const App = () => {
   const contents = [
@@ -58,34 +61,48 @@ const App = () => {
       body: "",
     },
   ];
-  const [articles, setArticle] = useState<Article[]>(contents);
 
+  // To initialize Content with plain text, We should use createFromText with text.
+  // That will convert text into rich text. To reconvert, use getPlainText().
+  const richContents = contents.map((content) => ({
+    title: content.title,
+    body: ContentState.createFromText(content.body),
+  }));
+
+  const [articles, setArticles] = useState<RichContent[]>(richContents);
   const [selectedArticle, setSelectedArticle] = useState<Article>({
-    title: "",
-    body: "",
+    title: articles[0].title,
+    body: articles[0].body,
   });
 
-  return (
-    <ArticleContext.Provider value={articles}>
-      <div className="bg-gradient-to-r from-blue-200 to-blue-500 opacity-80text-xl">
-        <h1 className="text-4xl font-serif text-center pt-12 pb-6  w-6 h-6 motion-safe:animate-bounce">
-          夢十夜 <span className="text-white text-5xl">+ 1</span>
-        </h1>
-        <div className=" flex flex-row ">
-          <div className="min-h-screen w-4/12">
-            <MyRadioGroup
-              contents={articles}
-              handleSelect={setSelectedArticle}
-              selected={selectedArticle}
-            />
-          </div>
+  // ArticleContext will change by every single content update.
+  // This is inefficient, but I implemented this. This is mainly because I don't want to
+  // think when to update for now. When I face perf issue, I will fix this.
+  // useEffect(() => {}, []);
 
-          <div className="w-7/12">
-            <MyEditor content={selectedArticle} />
-          </div>
+  return (
+    <div className="bg-gradient-to-r from-blue-200 to-blue-500 opacity-80text-xl">
+      <h1 className="text-4xl font-serif text-center pt-12 pb-6  w-6 h-6 motion-safe:animate-bounce">
+        夢十夜 <span className="text-white text-5xl">+ 1</span>
+      </h1>
+      <div className=" flex flex-row ">
+        <div className="min-h-screen w-4/12">
+          <MyRadioGroup
+            contents={articles}
+            handleSelect={setSelectedArticle}
+            selected={selectedArticle}
+          />
+        </div>
+
+        <div className="w-7/12">
+          <MyEditor
+            title={selectedArticle.title}
+            content={selectedArticle.body}
+            setArticles={setArticles}
+          />
         </div>
       </div>
-    </ArticleContext.Provider>
+    </div>
   );
 };
 
