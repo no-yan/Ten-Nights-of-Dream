@@ -89,7 +89,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
         </button>
       </div>
       <div
-        className="p-4 mt-4 my-10 bg-white opacity-90 shadow-lg rounded-xl"
+        className="p-4 mt-4 my-10  bg-white opacity-90 shadow-lg rounded-xl"
         style={{ border: "1px solid white", fontSize: 20 }}
       >
         <Editor
