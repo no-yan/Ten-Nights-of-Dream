@@ -19,9 +19,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createWithContent(content)
   );
-  useEffect(() => {
-    setEditorState(EditorState.createWithContent(content));
-  }, [content]);
+
   const onChange = (editorState: any) => {
     setEditorState(editorState);
   };
@@ -37,33 +35,63 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
     return "not-handled";
   };
 
+  const handleSave = () => {
+    const currentEditorState = editorState;
+    onChange(currentEditorState);
+    const newContent = currentEditorState.getCurrentContent();
+    const newObj = {
+      title: title,
+      body: newContent,
+    };
+    setArticles((prev) => {
+      const newArticles = prev.map((prevArticle) => {
+        if (prevArticle.title === title) return newObj;
+        return prevArticle;
+      });
+
+      return newArticles;
+    });
+  };
+
+  useEffect(() => {
+    setEditorState(EditorState.createWithContent(content));
+  }, [content]);
+
   return (
     <>
-      <button
-        onMouseDown={(e) => {
-          onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));
-          e.preventDefault();
-        }}
+      <div className="space-x-4 bg-white opacity-30 rounded-lg flex justify-between w-10/12 m-auto px-6 text-lg">
+        <button
+          onMouseDown={(e) => {
+            onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));
+            e.preventDefault();
+          }}
+        >
+          Bold
+        </button>
+        <button
+          onMouseDown={(e) => {
+            onChange(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
+            e.preventDefault();
+          }}
+        >
+          Italic
+        </button>
+        <button
+          onMouseDown={(e) => {
+            onChange(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
+            e.preventDefault();
+          }}
+        >
+          get Content
+        </button>
+        <button type={"button"} onClick={handleSave}>
+          Save
+        </button>
+      </div>
+      <div
+        className="p-4 mt-4 bg-white opacity-90 "
+        style={{ border: "1px solid black", fontSize: 20 }}
       >
-        Bold
-      </button>
-      <button
-        onMouseDown={(e) => {
-          onChange(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
-          e.preventDefault();
-        }}
-      >
-        Italic
-      </button>
-      <button
-        onMouseDown={(e) => {
-          onChange(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
-          e.preventDefault();
-        }}
-      >
-        get Content
-      </button>
-      <div style={{ border: "1px solid black", padding: 4, fontSize: 20 }}>
         <Editor
           editorState={editorState}
           onChange={setEditorState}
