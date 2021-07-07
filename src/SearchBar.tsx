@@ -1,3 +1,5 @@
+import { Index, Document, Worker } from "flexsearch";
+
 const SearchBar = () => {
   return (
     <div className="bg-white flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border rounded-lg border-gray-200">
