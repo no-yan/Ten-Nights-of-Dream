@@ -19,7 +19,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
         <RadioGroup value={selected} onChange={handleSelect}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
           <div className="space-y-1">
-            {contents.map((content, index) => (
+            {contents.map((content) => (
               <RadioGroup.Option
                 key={content.title}
                 value={content}
@@ -58,7 +58,10 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                           >
                             <span>
                               {" "}
-                              {content.body.getPlainText().slice(0, 200)}
+                              {content.body
+                                .getPlainText()
+                                .slice(0, 200)
+                                .split("　")}
                             </span>
                           </RadioGroup.Description>
                         </div>

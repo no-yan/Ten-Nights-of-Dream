@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, VFC, useState } from "react";
+import { Dispatch, useEffect, VFC, useState, MouseEventHandler } from "react";
 import {
   DraftHandleValue,
   Editor,
@@ -35,7 +35,8 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
     return "not-handled";
   };
 
-  const handleSave = () => {
+  const handleSave = (e: any) => {
+    e.preventDefault();
     const currentEditorState = editorState;
     onChange(currentEditorState);
     const newContent = currentEditorState.getCurrentContent();
@@ -59,7 +60,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
 
   return (
     <>
-      <div className="space-x-4 bg-white opacity-30 rounded-lg flex justify-between w-10/12 m-auto px-6 text-lg">
+      <div className="space-x-4 bg-white rounded-lg flex justify-between w-10/12 mx-auto my-2 px-24 text-lg">
         <button
           onMouseDown={(e) => {
             onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));
@@ -76,20 +77,12 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
         >
           Italic
         </button>
-        <button
-          onMouseDown={(e) => {
-            onChange(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
-            e.preventDefault();
-          }}
-        >
-          get Content
-        </button>
-        <button type={"button"} onClick={handleSave}>
+        <button type="button" onMouseDown={handleSave}>
           Save
         </button>
       </div>
       <div
-        className="p-4 mt-4 my-10  bg-white opacity-90 shadow-lg rounded-xl"
+        className="p-4 mt-4 my-10 text-gray-900 text-base leading-normal px-4　text-justify bg-white opacity-95 shadow-lg rounded-xl"
         style={{ border: "1px solid white", fontSize: 20 }}
       >
         <Editor
