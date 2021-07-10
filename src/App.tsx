@@ -68,18 +68,14 @@ const App = () => {
     body: articles[0].body,
   });
 
-  // ArticleContext will change by every single content update.
-  // This is inefficient, but I implemented this. This is mainly because I don't want to
-  // think when to update for now. When I face perf issue, I will fix this.
-  // useEffect(() => {}, []);
-
   return (
     <div className="bg-gradient-to-r from-blue-200 to-blue-500 opacity-80text-xl">
+      {/* Header */}
       <div className="flex flex-wrap items-center pt-10 pb-6">
         <div className="w-4/12">
           <div className="w-full px-4 py-2">
             <div className="w-full max-w-md mx-auto">
-              <SearchBar />
+              <SearchBar contents={articles} />
             </div>
           </div>
         </div>
@@ -87,8 +83,11 @@ const App = () => {
           夢十夜 <span className="text-white text-5xl">+ 1</span>
         </h1>
       </div>
+      {/* Header */}
 
+      {/* Body */}
       <div className="flex flex-row ">
+        {/* Radio Buttons in Left */}
         <div className="min-h-screen w-4/12">
           <MyRadioGroup
             contents={articles}
@@ -97,6 +96,7 @@ const App = () => {
           />
         </div>
 
+        {/* Editor and Control Buttons in Right */}
         <div className="w-7/12">
           <MyEditor
             title={selectedArticle.title}
@@ -105,6 +105,7 @@ const App = () => {
           />
         </div>
       </div>
+      {/* Body */}
     </div>
   );
 };

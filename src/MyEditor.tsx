@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, VFC, useState, MouseEventHandler } from "react";
+import { Dispatch, useEffect, VFC, useState } from "react";
 import {
   DraftHandleValue,
   Editor,
@@ -82,7 +82,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
         </button>
       </div>
       <div
-        className="p-4 mt-4 my-10 text-gray-900 text-base leading-normal px-4　text-justify bg-white opacity-95 shadow-lg rounded-xl"
+        className="p-4 mt-4 my-10 text-gray-900 text-base leading-normal px-4　text-justify bg-white opacity-100 shadow-lg rounded-xl"
         style={{ border: "1px solid white", fontSize: 20 }}
       >
         <Editor

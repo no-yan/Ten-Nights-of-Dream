@@ -26,7 +26,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                 className={({ active, checked }) =>
                   `${
                     active
-                      ? "ring-2 ring-offset-2 ring-offset-light-blue-300 ring-white ring-opacity-60 opacity-95"
+                      ? "ring-2 ring-offset-2 text-gray-600 ring-offset-light-blue-300 ring-white ring-opacity-60 opacity-95"
                       : ""
                   }
                   ${
@@ -45,7 +45,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                           <RadioGroup.Label
                             as="p"
                             className={`font-bold  ${
-                              checked ? "text-white" : "text-gray-800"
+                              checked ? "text-white" : "text-gray-600"
                             }`}
                           >
                             {content.title}
