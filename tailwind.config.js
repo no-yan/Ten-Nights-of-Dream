@@ -1,5 +1,5 @@
 module.exports = {
-  mode: "jit",
+  mode: process.env.NODE_ENV ? "jit" : undefined,
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -12,4 +12,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-};
+}

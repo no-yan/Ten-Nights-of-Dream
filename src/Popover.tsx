@@ -25,7 +25,7 @@ const solutions = [
 
 export default function Example() {
   return (
-    <div className="w-full max-w-sm px-4 fixed top-16">
+    <div className="fixed top-16 px-4 w-full max-w-sm">
       <Popover className="relative">
         {({ open }) => (
           <>
@@ -50,23 +50,23 @@ export default function Example() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute z-10 w-screen max-w-sm px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-3xl">
-                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                  <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-2">
+              <Popover.Panel className="absolute z-10 left-1/2 mt-3 px-4 w-screen max-w-sm transform -translate-x-1/2 sm:px-0 lg:max-w-3xl">
+                <div className="rounded-lg shadow-lg overflow-hidden ring-black ring-opacity-5 ring-1">
+                  <div className="relative grid gap-8 p-7 bg-white lg:grid-cols-2">
                     {solutions.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
-                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                        className="focus-visible:ring-orange-500 flex items-center -m-3 p-2 hover:bg-gray-50 rounded-lg focus:outline-none transition duration-150 ease-in-out focus-visible:ring-opacity-50 focus-visible:ring"
                       >
-                        <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 text-white sm:h-12 sm:w-12">
+                        <div className="flex flex-shrink-0 items-center justify-center w-10 h-10 text-white sm:w-12 sm:h-12">
                           <item.icon aria-hidden="true" />
                         </div>
                         <div className="ml-4">
-                          <p className="text-sm font-medium text-gray-900">
+                          <p className="text-gray-900 text-sm font-medium">
                             {item.name}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-gray-500 text-sm">
                             {item.description}
                           </p>
                         </div>
@@ -76,14 +76,14 @@ export default function Example() {
                   <div className="p-4 bg-gray-50">
                     <a
                       href="##"
-                      className="flow-root px-2 py-2 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                      className="focus-visible:ring-orange-500 flow-root px-2 py-2 hover:bg-gray-100 rounded-md focus:outline-none transition duration-150 ease-in-out focus-visible:ring-opacity-50 focus-visible:ring"
                     >
                       <span className="flex items-center">
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-gray-900 text-sm font-medium">
                           Documentation
                         </span>
                       </span>
-                      <span className="block text-sm text-gray-500">
+                      <span className="block text-gray-500 text-sm">
                         Start integrating products and tools
                       </span>
                     </a>

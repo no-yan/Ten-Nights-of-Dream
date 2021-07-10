@@ -60,7 +60,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
 
   return (
     <>
-      <div className="space-x-4 bg-white rounded-lg flex justify-between w-10/12 mx-auto my-2 px-24 text-lg">
+      <div className="flex justify-between mx-auto my-2 px-24 w-10/12 text-lg bg-white rounded-lg space-x-4">
         <button
           onMouseDown={(e) => {
             onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));
@@ -82,7 +82,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
         </button>
       </div>
       <div
-        className="p-4 mt-4 my-10 text-gray-900 text-base leading-normal px-4　text-justify bg-white opacity-100 shadow-lg rounded-xl"
+        className="px-4　text-justify mt-4 my-10 p-4 text-gray-900 text-base leading-normal bg-white rounded-xl shadow-lg opacity-100"
         style={{ border: "1px solid white", fontSize: 20 }}
       >
         <Editor

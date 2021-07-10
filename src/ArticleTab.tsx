@@ -14,8 +14,8 @@ type Props = {
 
 export default function Example({ contents, handleSelect, selected }: Props) {
   return (
-    <div className="w-full px-4 py-2">
-      <div className="w-full max-w-md mx-auto">
+    <div className="px-4 py-2 w-full">
+      <div className="mx-auto w-full max-w-md">
         <RadioGroup value={selected} onChange={handleSelect}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
           <div className="space-y-1">
@@ -41,7 +41,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                   <>
                     <div className="flex items-center justify-between w-full">
                       <div className="flex items-center">
-                        <div className="text-base overflow-hidden max-h-12 ">
+                        <div className="max-h-12 text-base overflow-hidden">
                           <RadioGroup.Label
                             as="p"
                             className={`font-bold  ${

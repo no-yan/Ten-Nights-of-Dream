@@ -69,26 +69,26 @@ const App = () => {
   });
 
   return (
-    <div className="bg-gradient-to-r from-blue-200 to-blue-500 opacity-80text-xl">
+    <div className="opacity-80text-xl bg-gradient-to-r from-blue-200 to-blue-500">
       {/* Header */}
-      <div className="flex flex-wrap items-center pt-10 pb-6">
+      <div className="flex flex-wrap items-center pb-6 pt-10">
         <div className="w-4/12">
-          <div className="w-full px-4 py-2">
-            <div className="w-full max-w-md mx-auto">
+          <div className="px-4 py-2 w-full">
+            <div className="mx-auto w-full max-w-md">
               <SearchBar contents={articles} />
             </div>
           </div>
         </div>
-        <h1 className="text-4xl font-serif text-gray-800 text-center motion-safe:animate-bounce w-7/12">
+        <h1 className="w-7/12 text-center text-gray-800 font-serif text-4xl motion-safe:animate-bounce">
           夢十夜 <span className="text-white text-5xl">+ 1</span>
         </h1>
       </div>
       {/* Header */}
 
       {/* Body */}
-      <div className="flex flex-row ">
+      <div className="flex flex-row">
         {/* Radio Buttons in Left */}
-        <div className="min-h-screen w-4/12">
+        <div className="w-4/12 min-h-screen">
           <MyRadioGroup
             contents={articles}
             handleSelect={setSelectedArticle}
