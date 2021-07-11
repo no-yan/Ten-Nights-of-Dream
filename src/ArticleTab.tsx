@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
-import { RadioGroup } from "@headlessui/react";
-import { ContentState } from "draft-js";
+import { Dispatch, SetStateAction } from 'react';
+import { RadioGroup } from '@headlessui/react';
+import { ContentState } from 'draft-js';
 
 type Content = {
   title: string;
@@ -26,13 +26,13 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                 className={({ active, checked }) =>
                   `${
                     active
-                      ? "ring-2 ring-offset-2 text-gray-600 ring-offset-light-blue-300 ring-white ring-opacity-60 opacity-95"
-                      : ""
+                      ? 'ring-2 ring-offset-2 text-gray-600 ring-offset-light-blue-300 ring-white ring-opacity-60 opacity-95'
+                      : ''
                   }
                   ${
                     checked
-                      ? "bg-light-blue-900 bg-opacity-75 text-white"
-                      : "bg-white"
+                      ? 'bg-light-blue-900 bg-opacity-75 text-white'
+                      : 'bg-white'
                   }
                     relative rounded-lg shadow-md px-5 py-4 cursor-pointer flex focus:outline-none`
                 }
@@ -45,7 +45,7 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                           <RadioGroup.Label
                             as="p"
                             className={`font-bold  ${
-                              checked ? "text-white" : "text-gray-600"
+                              checked ? 'text-white' : 'text-gray-600'
                             }`}
                           >
                             {content.title}
@@ -53,15 +53,15 @@ export default function Example({ contents, handleSelect, selected }: Props) {
                           <RadioGroup.Description
                             as="span"
                             className={`inline ${
-                              checked ? "text-light-blue-100" : "text-gray-800"
+                              checked ? 'text-light-blue-100' : 'text-gray-800'
                             }`}
                           >
                             <span>
-                              {" "}
+                              {' '}
                               {content.body
                                 .getPlainText()
                                 .slice(0, 200)
-                                .split("　")}
+                                .split('　')}
                             </span>
                           </RadioGroup.Description>
                         </div>

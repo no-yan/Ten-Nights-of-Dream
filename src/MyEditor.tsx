@@ -1,13 +1,13 @@
-import { Dispatch, useEffect, VFC, useState } from "react";
+import { Dispatch, useEffect, VFC, useState } from 'react';
 import {
   DraftHandleValue,
   Editor,
   EditorState,
   ContentState,
   RichUtils,
-} from "draft-js";
-import "draft-js/dist/Draft.css";
-import { RichContent } from "./App";
+} from 'draft-js';
+import 'draft-js/dist/Draft.css';
+import { RichContent } from './App';
 
 type Props = {
   title: string;
@@ -29,10 +29,10 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
 
     if (newState) {
       onChange(newState);
-      return "handled";
+      return 'handled';
     }
 
-    return "not-handled";
+    return 'not-handled';
   };
 
   const handleSave = (e: any) => {
@@ -63,7 +63,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
       <div className="flex justify-between mx-auto my-2 px-24 w-10/12 text-lg bg-white rounded-lg space-x-4">
         <button
           onMouseDown={(e) => {
-            onChange(RichUtils.toggleInlineStyle(editorState, "BOLD"));
+            onChange(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
             e.preventDefault();
           }}
         >
@@ -71,7 +71,7 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
         </button>
         <button
           onMouseDown={(e) => {
-            onChange(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
+            onChange(RichUtils.toggleInlineStyle(editorState, 'ITALIC'));
             e.preventDefault();
           }}
         >
@@ -83,13 +83,13 @@ const MyEditor: VFC<Props> = ({ title, content, setArticles }) => {
       </div>
       <div
         className="px-4　text-justify mt-4 my-10 p-4 text-gray-900 text-base leading-normal bg-white rounded-xl shadow-lg opacity-100"
-        style={{ border: "1px solid white", fontSize: 20 }}
+        style={{ border: '1px solid white', fontSize: 20 }}
       >
         <Editor
           editorState={editorState}
           onChange={setEditorState}
           handleKeyCommand={handleKeyCommand}
-          placeholder={"　こんな夢を見た。"}
+          placeholder={'　こんな夢を見た。'}
         />
       </div>
     </>

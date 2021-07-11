@@ -174,28 +174,29 @@ React Fiber の勉強がおわった（一ヶ月ほど専念していた）の�
 次は目的の全文検索をやる。
 
 2021-07-11 22:44:35
-気を失っていたら4日間が過ぎていた。実際には、matchAllの機能を使ってコンパイラに怒られ、その原因解明に時間がかかったり、全文検索をflexsearchやluarでやるのはどうなのか、「そもそも全文検索って？」と調べていたのが中心。後半２日はUI制作。devideを知った。振り返ってみて成長する負荷の掛け方ができていない。またポモドーロをする。
+気を失っていたら 4 日間が過ぎていた。実際には、matchAll の機能を使ってコンパイラに怒られ、その原因解明に時間がかかったり、全文検索を flexsearch や luar でやるのはどうなのか、「そもそも全文検索って？」と調べていたのが中心。後半２日は UI 制作。devide を知った。振り返ってみて成長する負荷の掛け方ができていない。またポモドーロをする。
 
 目的：検索結果のひとつをクリックすると、該当する記事が開くようにする
-   
-   0. リファクタリングする
-   1. フォーカス可能にする
-   2. handleChangeをつける
+
+0.  リファクタリングする
+1.  フォーカス可能にする
+2.  handleChange をつける
 
 まずリファクタリングのファイル設計方針がないので、(React Architecture: How to Structure and Organize a React Application)[https://www.taniarascia.com/react-architecture-directory-structure/]を読んで、構造の指針とその理由を言語化する。
 
-各コンポーネントをグループに分け、フォルダを作る。form, tables, buttons,layoutsといったそれぞれのフォルダ内に個々のコンポーネントのフォルダを作り、テストなどをそこに配置する。
+各コンポーネントをグループに分け、フォルダを作る。form, tables, buttons,layouts といったそれぞれのフォルダ内に個々のコンポーネントのフォルダを作り、テストなどをそこに配置する。
 
 Component.js - The actual React component
 Component.styles.js - The Styled Components file for the component
 Component.test.js - The tests
 Component.stories.js - The Storybook file
 
-最上層のフォルダ直下にindex.jsを作り、そこですべてをexportする。そうすると、このような操作が簡単になる。
+最上層のフォルダ直下に index.js を作り、そこですべてを export する。そうすると、このような操作が簡単になる。
 
 `import { TextField, Select, Radio } from '@components/forms'`
 
 次のようなフォルダ構成になる。
+
 ```
 └── /src
     ├── /assets
@@ -207,4 +208,14 @@ Component.stories.js - The Storybook file
     ├── index.js
     └── App.js
 ```
+
 これは多少大規模サービス向けな気がするが、試してみよう。
+
+2021-07-11 23:43:53
+コンポーネントごとにリファクタリングする
+
+- 検索バー
+- エディター
+- ラジオボタン
+
+の３つ

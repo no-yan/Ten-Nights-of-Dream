@@ -1,5 +1,5 @@
-import React from "react";
-import { ContentState } from "draft-js";
+import React from 'react';
+import { ContentState } from 'draft-js';
 
 export type Article = {
   title: string;
