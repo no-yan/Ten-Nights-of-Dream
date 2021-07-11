@@ -23,7 +23,6 @@ const SearchBar: React.FC<Props> = ({ contents }) => {
         result.push([i, res])
       }
     }
-    console.log(result)
     return result as Suggestion[]
   }
 
@@ -69,76 +68,93 @@ type ListProps = { text: string; result: Suggestion[] }
 const SearchList = ({ text, result }: ListProps) => {
   console.log(result)
 
-  const TextComponent = result.map((res) => {
-    let component
+  const x = result.map((res) => {
+    let textArray
     if (res[1]) {
-      component = getComponent(res[1])
+      // This is a work around for typescript error(ts2488).
+      // When 'for of' syntax used,Typescript will warn `[a,b,c] = getText(res[1])`.
+      //  https://github.com/Microsoft/TypeScript/issues/12707
+      textArray = getText(res[1])
+      return textArray
     }
-    return component
+    return null
   })
 
   return (
-    <ul className="p-2 shadow-2xl divide-gray-300 divide-solid divide-y space-y-2">
-      {result.map(([article, RegMatchObject], index) => (
-        <li className="px-4">{text}</li>
-      ))}
-      {TextComponent}
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-      <li className="px-4">hoge</li>
-    </ul>
+    <>
+      {x && (
+        <ul className="p-2 shadow-2xl divide-gray-200 divide-solid divide-y">
+          {x.map((t) => {
+            if (!t) return null
+            const { beforeText, markedText, afterText } = t
+
+            return (
+              <ListItem
+                beforeText={beforeText}
+                matchedText={markedText}
+                afterText={afterText}
+              />
+            )
+          })}
+        </ul>
+      )}
+    </>
   )
 }
 
-const getComponent = (reg: RegExpMatchArray) => {
-  const textLengthLimit = 20
+const getText = (reg: RegExpMatchArray) => {
+  const textLengthLimit = 30
   const index = reg.index
   const input = reg.input
   if (!(index && input)) return
 
   let beforeText: string
+  let markedText = reg[0]
   let afterText: string
-  if (index < (textLengthLimit - input.length) / 2) {
+  if (index < (textLengthLimit - markedText.length) / 2) {
     beforeText = input.slice(0, index)
-    const afterTextLength = textLengthLimit - (index + reg[0].length)
-    beforeText = input.slice(0, index)
-    afterText = input.slice(index + reg[0].length + 1, index + afterTextLength)
-  } else if (input.length - index <= textLengthLimit) {
-    afterText = input.slice(index + reg[0].length + 1, input.length)
+    const afterTextLength = textLengthLimit - (index + markedText.length)
+    afterText = input.slice(
+      index + markedText.length,
+      index + markedText.length + afterTextLength
+    )
+  } else if (input.length - index <= textLengthLimit / 2) {
+    afterText = input.slice(index + markedText.length, input.length)
     const beforeTextLength = textLengthLimit
     beforeText = input.slice(index - beforeTextLength, index)
   } else {
     beforeText = input.slice(
-      index - Math.floor((textLengthLimit - reg[0].length) / 2),
+      index - Math.floor((textLengthLimit - markedText.length) / 2),
       index
     )
     afterText = input.slice(
-      index + reg[0].length,
-      Math.ceil((textLengthLimit - reg[0].length) / 2)
+      index + markedText.length,
+      index +
+        markedText.length +
+        Math.ceil((textLengthLimit - markedText.length) / 2)
     )
   }
-  return (
-    <p>
-      {beforeText}
-      <span className="bg-yellow-200">{input}</span>
-      {afterText}
-    </p>
-  )
+  // console.log(beforeText)
+  // console.log(markedText)
+  // console.log(afterText)
+  // console.log((beforeText + markedText + afterText).length)
+  return { beforeText, markedText, afterText }
 }
 
-// const SearchDetail = () => {
-//   return <></>
-// }
+type ListItemProps = {
+  beforeText: string
+  matchedText: string
+  afterText: string
+}
+const ListItem = ({ beforeText, matchedText, afterText }: ListItemProps) => {
+  return (
+    <li className="py-1">
+      <p>
+        {beforeText.replace(/\s+/g, "")}
+        <span className="bg-yellow-200">{matchedText.replace(/\s+/g, "")}</span>
+        {afterText.replace(/\s+/g, "")}
+      </p>
+    </li>
+  )
+}
 export default SearchBar
