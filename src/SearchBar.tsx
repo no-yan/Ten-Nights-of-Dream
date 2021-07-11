@@ -6,7 +6,6 @@ const SearchBar: React.FC<Props> = ({ contents }) => {
   const [query, setQuery] = useState("")
   const [suggestion, setSuggestion] = useState<Suggestion[]>()
 
-  // TODO: User Input can be escape character.
   const handleSearch = (contents: RichContent[], text: string) => {
     if (text.length === 0) return
 
@@ -29,8 +28,6 @@ const SearchBar: React.FC<Props> = ({ contents }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSuggestion(handleSearch(contents, e.target.value))
     setQuery(e.target.value)
-
-    // console.log(e.target.value);
   }
 
   return (
