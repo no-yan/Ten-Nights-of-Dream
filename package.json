@@ -15,6 +15,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "draft-js": "^0.11.7",
+    "postcss-focus-visible": "^5.0.0",
     "react": "^18.0.0-alpha-7ec4c5597",
     "react-dom": "^18.0.0-alpha-7ec4c5597",
     "react-scripts": "4.0.3",

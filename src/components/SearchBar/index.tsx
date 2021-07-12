@@ -1,9 +1,12 @@
 import { useState, ChangeEvent } from 'react';
 import { RichContent } from '../../App';
 import { SearchList } from './SearchList';
-type Props = { contents: RichContent[] };
+type Props = {
+  contents: RichContent[];
+  handleSelect: (articleNumber: number) => void;
+};
 export type Suggestion = [number, RegExpMatchArray];
-const SearchBar: React.FC<Props> = ({ contents }) => {
+const SearchBar: React.FC<Props> = ({ contents, handleSelect }) => {
   const [query, setQuery] = useState('');
   const [suggestion, setSuggestion] = useState<Suggestion[]>();
 
@@ -61,7 +64,13 @@ const SearchBar: React.FC<Props> = ({ contents }) => {
         className="pl-3 w-full text-black text-sm bg-transparent outline-none focus:outline-none"
       />
       <div className="absolute z-10 left-2 right-0 top-12 bg-white rounded">
-        {query && suggestion && <SearchList text={query} result={suggestion} />}
+        {query && suggestion && (
+          <SearchList
+            text={query}
+            result={suggestion}
+            handleSelect={handleSelect}
+          />
+        )}
       </div>
     </div>
   );

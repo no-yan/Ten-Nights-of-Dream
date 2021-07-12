@@ -12,7 +12,11 @@ type Props = {
   selected: Content;
 };
 
-export default function Example({ contents, handleSelect, selected }: Props) {
+export default function ArticleTab({
+  contents,
+  handleSelect,
+  selected,
+}: Props) {
   return (
     <div className="px-4 py-2 w-full">
       <div className="mx-auto w-full max-w-md">
