@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import MyRadioGroup from './ArticleTab';
-import MyEditor from './MyEditor';
-import { Article } from './ArticleContext';
+import MyRadioGroup from './components/RadioButton';
+import MyEditor from './components/Editor';
 import { ContentState } from 'draft-js';
 import SearchBar from './components/SearchBar';
 
 export type RichContent = { title: string; body: ContentState };
+export type Article = {
+  title: string;
+  body: ContentState;
+};
 
 const App = () => {
   const contents = [
