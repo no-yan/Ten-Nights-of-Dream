@@ -219,3 +219,22 @@ Component.stories.js - The Storybook file
 - ラジオボタン
 
 の３つ
+検索バーのリファクタリングを半分やった。次は変数名を変える。Suggestion型を自動インポートしようとしたら、testing libraryのが入ったのでそれが問題だったのだろう。
+
+結構ゴリゴリ進めても問題なく動くことがわかったので、このように進めていく。
+
+# 2021-07-12
+昨日の続きで、リファクタリングをしないと変更しづらくなってきているので、これを変更する。
+
+2021-07-12 14:42:03
+変数名を変えていく。()でエラーが出るので、正規表現のエスケープを学ぶ。
+
+Uncaught SyntaxError: Invalid regular expression: /(/: Unterminated group
+
+```javascript
+    const regExpEscape = (str: string) => {
+      return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    };
+```
+これで解決した。ここも正規表現にすることで解決。いずれきちんと正規表現を学ぶ必要があるかもしれない。
+

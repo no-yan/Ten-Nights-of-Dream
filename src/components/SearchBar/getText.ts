@@ -7,6 +7,7 @@ export const getText = (reg: RegExpMatchArray) => {
   let beforeText: string;
   let markedText = reg[0];
   let afterText: string;
+
   if (index < (textLengthLimit - markedText.length) / 2) {
     beforeText = input.slice(0, index);
     const afterTextLength = textLengthLimit - (index + markedText.length);
@@ -30,9 +31,6 @@ export const getText = (reg: RegExpMatchArray) => {
         Math.ceil((textLengthLimit - markedText.length) / 2)
     );
   }
-  // console.log(beforeText)
-  // console.log(markedText)
-  // console.log(afterText)
-  // console.log((beforeText + markedText + afterText).length)
+
   return { beforeText, markedText, afterText };
 };

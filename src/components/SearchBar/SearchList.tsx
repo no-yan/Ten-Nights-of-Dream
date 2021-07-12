@@ -5,10 +5,10 @@ import { ListItem } from './ListItem';
 type ListProps = { text: string; result: Suggestion[] };
 
 export const SearchList = ({ text, result }: ListProps) => {
-  const x = result.map((res) => {
+  const items = result.map((item) => {
     let textArray;
-    if (res[1]) {
-      textArray = getText(res[1]);
+    if (item[1]) {
+      textArray = getText(item[1]);
       return textArray;
     }
     return null;
@@ -16,11 +16,11 @@ export const SearchList = ({ text, result }: ListProps) => {
 
   return (
     <>
-      {x.length > 0 && (
+      {items.length > 0 && (
         <ul className="p-2 shadow-2xl divide-gray-200 divide-solid divide-y">
-          {x.map((t) => {
-            if (!t) return null;
-            const { beforeText, markedText, afterText } = t;
+          {items.map((item) => {
+            if (!item) return null;
+            const { beforeText, markedText, afterText } = item;
 
             return (
               <ListItem

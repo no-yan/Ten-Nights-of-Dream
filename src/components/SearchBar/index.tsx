@@ -11,7 +11,12 @@ const SearchBar: React.FC<Props> = ({ contents }) => {
     if (text.length === 0) return;
 
     const result = [];
-    const regExpObj = new RegExp(text, 'g');
+
+    const regExpEscape = (str: string) => {
+      return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    };
+
+    const regExpObj = new RegExp(regExpEscape(text), 'g');
 
     const textContents = contents.map((content) => content.body.getPlainText());
     const limit = contents.length;
