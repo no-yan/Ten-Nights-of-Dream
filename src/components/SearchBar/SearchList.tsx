@@ -29,7 +29,9 @@ export const SearchList = ({ text, result, handleSelect }: Props) => {
             return (
               <li className="py-1 hover:bg-gray-100">
                 <button
-                  onClick={() => handleSelect(articleNumber)}
+                  onClick={() => {
+                    handleSelect(articleNumber);
+                  }}
                   className="rounded-lg focus:outline-none focus-visible:ring-yellow-500 focus-visible:ring-2"
                 >
                   <ListItem
